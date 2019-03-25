@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @Author Mwg
- * @Date 2019/3/6 16:04
- * @Description TODO
- * @Version 1.0
+ * TODO
+ * @author Mwg
+ * @date 2019/3/6 16:04
+ * @version 1.0
  */
 @Component
 public interface WordMapper {
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 14:05
-     * @Description TODO
-     * @Param [word]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 14:05
+     * @param word English
+     * @return com.english.entity.WordEntity
      */
     @Select("SELECT * FROM enwords WHERE word = #{word};")
     @Results({
@@ -32,11 +32,11 @@ public interface WordMapper {
     WordEntity getByWord(String word);
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 14:06
-     * @Description TODO
-     * @Param [translation]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 14:06
+     * @param translation Chinese
+     * @return com.english.entity.WordEntity
      */
     @Select("SELECT * FROM enwords WHERE translation like '%#{translation}%';")
     @Results({
@@ -47,11 +47,11 @@ public interface WordMapper {
     List<WordEntity> getByTranslation(String translation);
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 14:06
-     * @Description TODO
-     * @Param [id]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/25 18:47
+     * @param id Primary key
+     * @return com.english.entity.WordEntity
      */
     @Select("SELECT * FROM enwords WHERE id = #{id};")
     @Results({
@@ -62,11 +62,11 @@ public interface WordMapper {
     WordEntity getById(int id);
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 14:10
-     * @Description TODO
-     * @Param []
-     * @Return int
+     * TODO
+     * @author Mwg
+     * @date 2019/3/25 18:47
+     * @param () no param
+     * @return int
      */
     @Select("SELECT COUNT(*) AS count FROM enwords;")
     @Results({
