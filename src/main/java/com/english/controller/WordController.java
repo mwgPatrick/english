@@ -32,7 +32,7 @@ public class WordController {
      * @Param [word]
      * @Return com.english.entity.WordEntity
      */
-    @RequestMapping("/getByWord")
+    @RequestMapping("/word/getByWord")
     public WordEntity getByWord(@RequestParam(value = "word", required = true) String word){
         return WordMapper.getByWord(word);
     }
@@ -44,9 +44,9 @@ public class WordController {
      * @Param [translation]
      * @Return com.english.entity.WordEntity
      */
-    @RequestMapping("/getByTranslation")
+    @RequestMapping("/word/getByTranslation")
     public List<WordEntity> getByTranslation(@RequestParam(value = "translation",required = true) String translation){
-        return WordMapper.getByTranslation("%"+translation+"%");
+        return WordMapper.getByTranslation("%" + translation + "%");
     }
 
     /**
@@ -56,7 +56,7 @@ public class WordController {
      * @Param [id]
      * @Return com.english.entity.WordEntity
      */
-    @RequestMapping("/getById")
+    @RequestMapping("/word/getById")
     public WordEntity getById(@RequestParam(value = "id",required = true) int id){
         return WordMapper.getById(id);
     }
@@ -68,7 +68,7 @@ public class WordController {
      * @Param []
      * @Return com.english.entity.WordEntity
      */
-    @RequestMapping("/getRandomWord")
+    @RequestMapping("/word/getRandomWord")
     public WordEntity getRandomWord(){
         int id = WordService.getRandomId();
         return WordMapper.getById(id);

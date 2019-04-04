@@ -38,7 +38,7 @@ public interface WordMapper {
      * @param translation Chinese
      * @return com.english.entity.WordEntity
      */
-    @Select("SELECT * FROM enwords WHERE translation like '%#{translation}%';")
+    @Select({"SELECT * FROM enwords WHERE translation like #{translation};"})
     @Results({
             @Result(property = "word", column = "word"),
             @Result(property = "translation",column = "translation"),
