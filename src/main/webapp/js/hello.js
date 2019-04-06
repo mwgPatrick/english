@@ -1,8 +1,12 @@
 function getTranslation() {
     var word = $('#english').val();
-    $.get("http://localhost:8090/getByWord?word=" + word,function (data,status) {
-        console.log(data);
-        var tra = data.translation;
+    $.get("http://localhost:8090/word/getByWord?word=" + word, function (data) {
+        // console.log(data);
+        var tra
+        if(data.translation != null)
+            tra = data.translation;
+        else
+            tra = "没有查询结果，请检查是否输入有误。"
         var chinese = document.getElementById("chinese");
         chinese.innerText = tra;
     })
@@ -10,7 +14,7 @@ function getTranslation() {
 function getRand() {
     $.ajax({
         type:"get",
-        url:"http://localhost:8090/getRandomWord",
+        url:"http://localhost:8090/word/getRandomWord",
         data:null,
         async:false,
         dataType:'json',
