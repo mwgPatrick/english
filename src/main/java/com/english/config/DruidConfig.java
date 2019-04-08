@@ -132,11 +132,12 @@ public class DruidConfig {
         reg.addInitParameter("logSlowSql", logSlowSql);
         reg.setServlet(new StatViewServlet());
         Map<String, String> initParameters = new HashMap<>();
-        initParameters.put("resetEnable", "false"); //禁用HTML页面上的“Rest All”功能
-
-        initParameters.put("loginUsername", "Patrick");  //监控页面登录用户名
-        initParameters.put("loginPassword", "mwg924540676");  //监控页面登录用户密码
-
+        //禁用HTML页面上的“Rest All”功能
+        initParameters.put("resetEnable", "false");
+        //监控页面登录用户名
+        initParameters.put("loginUsername", "Patrick");
+        //监控页面登录用户密码
+        initParameters.put("loginPassword", "mwg924540676");
         //如果某个ip同时存在，deny优先于allow
         reg.setInitParameters(initParameters);
         return reg;

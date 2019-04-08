@@ -22,7 +22,7 @@ import java.util.List;
 public class WordController {
     @Autowired
     private WordMapper WordMapper;
-    
+
     @Autowired
     private WordService WordService;
     /**
