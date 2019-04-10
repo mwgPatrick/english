@@ -14,6 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public interface TipsMapper {
 
+    /**
+     * @Author Mwg
+     * @Date 2019/4/8 11:01
+     * @Description TODO
+     * @Param [id]
+     * @Return com.english.entity.TipsEntity
+     */
     @Select("SELECT * FROM tips WHERE id = #{id};")
     TipsEntity getById(int id);
 
