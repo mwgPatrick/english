@@ -7,20 +7,20 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author Mwg
- * @Date 2019/4/5 21:04
- * @Version 1.0
- * @Description TODO
+ * TODO
+ * @author Mwg
+ * @date 2019/4/5 21:04
+ * @version 1.0
  */
 @Component
 public interface ArticleMapper {
 
     /**
-     * @Author Mwg
-     * @Date 2019/4/5 21:23
-     * @Description TODO
-     * @Param [id]
-     * @Return com.english.entity.ArticleEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/4/5 21:23
+     * @param id article id.
+     * @return com.english.entity.ArticleEntity
      */
     @Select("SELECT article,word_count FROM articles WHERE id = #{id};")
     @Results({
@@ -30,11 +30,11 @@ public interface ArticleMapper {
     ArticleEntity getArticleById(int id);
 
     /**
-     * @Author Mwg
-     * @Date 2019/4/5 21:24
-     * @Description TODO
-     * @Param [id]
-     * @Return com.english.entity.ArticleEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/4/5 21:24
+     * @param id article id.
+     * @return com.english.entity.ArticleEntity
      */
     @Select("SELECT chinese FROM articles WHERE id = #{id};")
     @Results({
@@ -43,21 +43,21 @@ public interface ArticleMapper {
     ArticleEntity getChineseById(int id);
 
     /**
-     * @Author Mwg
-     * @Date 2019/4/5 21:29
-     * @Description TODO
-     * @Param [difficult]
-     * @Return int
+     * TODO
+     * @author Mwg
+     * @date 2019/4/5 21:29
+     * @param difficult difficlut grade.
+     * @return int
      */
     @Select("SELECT COUNT(*) as count FROM articles WHERE difficult = #{difficult};")
     int getDifficultArticleCount(int difficult);
 
     /**
-     * @Author Mwg
-     * @Date 2019/4/5 21:29
-     * @Description TODO
-     * @Param []
-     * @Return int
+     * TODO
+     * @author Mwg
+     * @date 2019/4/5 21:29
+     * @param () no param
+     * @return int
      */
     @Select("SELECT COUNT(*) as count FROM articles;")
     int getAllArticleCount();

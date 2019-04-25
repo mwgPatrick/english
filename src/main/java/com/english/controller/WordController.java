@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
- * @Author Mwg
- * @Date 2019/3/6 16:22
- * @Description TODO
- * @Version 1.0
+ * TODO
+ * @author Mwg
+ * @date 2019/3/6 16:22
+ * @version 1.0
  */
 @Slf4j
 @RestController
@@ -26,11 +29,11 @@ public class WordController {
     @Autowired
     private WordService WordService;
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 13:49
-     * @Description TODO
-     * @Param [word]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 13:49
+     * @param word word in English
+     * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getByWord")
     public WordEntity getByWord(@RequestParam(value = "word", required = true) String word){
@@ -38,11 +41,11 @@ public class WordController {
     }
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 13:49
-     * @Description TODO
-     * @Param [translation]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 13:49
+     * @param translation chinese
+     * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getByTranslation")
     public List<WordEntity> getByTranslation(@RequestParam(value = "translation",required = true) String translation){
@@ -50,11 +53,11 @@ public class WordController {
     }
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 13:52
-     * @Description TODO
-     * @Param [id]
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 13:52
+     * @param id word-id
+     * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getById")
     public WordEntity getById(@RequestParam(value = "id",required = true) int id){
@@ -62,15 +65,17 @@ public class WordController {
     }
 
     /**
-     * @Author Mwg
-     * @Date 2019/3/8 14:16
-     * @Description TODO
-     * @Param []
-     * @Return com.english.entity.WordEntity
+     * TODO
+     * @author Mwg
+     * @date 2019/3/8 14:16
+     * @param ()  no param
+     * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getRandomWord")
     public WordEntity getRandomWord(){
         int id = WordService.getRandomId();
         return WordMapper.getById(id);
     }
+
+
 }

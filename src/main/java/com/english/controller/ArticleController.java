@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * @Author Mwg
- * @Date 2019/4/5 21:12
- * @Version 1.0
- * @Description TODO
+ * @author Mwg
+ * @date 2019/4/5 21:12
+ * @version 1.0
+ * @description TODO
  */
 @Slf4j
 @RestController
@@ -24,6 +24,13 @@ public class ArticleController {
     @Autowired
     private ArticleMapper articleMapper;
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:39
+     * @param [id]
+     * @return java.util.LinkedList<java.util.HashMap>
+     */
     @RequestMapping("/article/getArticleById")
     public LinkedList<HashMap> getArticleById(@RequestParam(value = "id",required = true) int id){
         ArticleEntity currentEntity = articleMapper.getArticleById(id);

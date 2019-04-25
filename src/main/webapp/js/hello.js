@@ -1,16 +1,29 @@
 function getTranslation() {
     var word = $('#english').val();
-    $.get("http://localhost:8090/word/getByWord?word=" + word, function (data) {
+
+    $.post("http://localhost:8090/word/getByWord",{"word" : word}, function (data) {
         // console.log(data);
         var tra
         if(data.translation != null)
             tra = data.translation;
         else
-            tra = "没有查询结果，请检查是否输入有误。"
+            tra = "没有查询结果，请检查是否输入有误。";
         var chinese = document.getElementById("chinese");
         chinese.innerText = tra;
     })
+
 }
+    // $.get("http://localhost:8090/word/getByWord?word=" + word, function (data) {
+    //     // console.log(data);
+    //     var tra
+    //     if(data.translation != null)
+    //         tra = data.translation;
+    //     else
+    //         tra = "没有查询结果，请检查是否输入有误。"
+    //     var chinese = document.getElementById("chinese");
+    //     chinese.innerText = tra;
+    // })
+
 function getRand() {
     $.ajax({
         type:"get",
@@ -22,7 +35,7 @@ function getRand() {
             var word = res.word;
             var translation = res.translation;
             var ran_word = document.getElementById("ran_word");
-            var ran_translation = document.getElementById("ran_trans")
+            var ran_translation = document.getElementById("ran_trans");
             ran_word.innerText = word;
             ran_translation.innerText = translation;
         },
@@ -30,4 +43,5 @@ function getRand() {
             alert("请求失败。")
         }
     })
+
 }

@@ -7,18 +7,32 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Random;
 
 /**
- * @Author Mwg
- * @Date 2019/3/6 16:42
- * @Description TODO
- * @Version 1.0
+ * TODO
+ * @author Mwg
+ * @date 2019/3/6 16:42
+ * @version 1.0
  */
 public class CommonService {
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:53
+     * @param n range.
+     * @return int
+     */
     public static int getRandom(int n){
         Random rand = new Random();
         return rand.nextInt(n)+1;
     }
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:54
+     * @param url,params request url,request param
+     * @return java.lang.String
+     */
     public static String sendPostRequest(String url, MultiValueMap<String, String> params){
         RestTemplate client = new RestTemplate();
         //新建Http头，add方法可以添加参数
@@ -36,6 +50,13 @@ public class CommonService {
     }
 
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:54
+     * @param url,params,headers request url,request params,request headers
+     * @return java.lang.String
+     */
     public static String sendGetRequest(String url, MultiValueMap<String, String> params,HttpHeaders headers){
         RestTemplate client = new RestTemplate();
 

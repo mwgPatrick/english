@@ -7,13 +7,20 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author Mwg
- * @Date 2019/4/3 10:34
- * @Version 1.0
- * @Description TODO
+ * TODO
+ * @author Mwg
+ * @date 2019/4/3 10:34
+ * @version 1.0
  */
 @Component
 public interface ChoiceMapper {
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:51
+     * @param id Choice id
+     * @return com.english.entity.ChoiceEntity
+     */
     @Select("SELECT * FROM choice WHERE id = #{id};")
     @Results({
             @Result(property = "id", column = "id"),
@@ -29,6 +36,13 @@ public interface ChoiceMapper {
     })
     ChoiceEntity getDetailById(int id);
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:51
+     * @param id Choice id
+     * @return com.english.entity.ChoiceEntity
+     */
     @Select("SELECT question,mark_A,mark_B,mark_C,mark_D,grade,difficult " +
             "FROM choice WHERE id = #{id}")
     @Results({
@@ -43,6 +57,13 @@ public interface ChoiceMapper {
     })
     ChoiceEntity getQuestionById(int id);
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/25 21:51
+     * @param id Choice id
+     * @return java.lang.string
+     */
     @Select("SELECT answer FROM choice WHERE id = #{id}")
     @Results({
             @Result(property = "answer", column = "answer")
