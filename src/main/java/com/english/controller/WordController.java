@@ -2,8 +2,12 @@ package com.english.controller;
 
 import com.english.entity.WordEntity;
 import com.english.mapper.WordMapper;
+import com.english.service.CommonService;
+import com.english.service.TranslateService;
 import com.english.service.WordService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +27,8 @@ import java.util.List;
 @Slf4j
 @RestController
 public class WordController {
+    private static Logger logger = LoggerFactory.getLogger(WordController.class);
+
     @Autowired
     private WordMapper WordMapper;
 
@@ -36,8 +42,8 @@ public class WordController {
      * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getByWord")
-    public WordEntity getByWord(@RequestParam(value = "word", required = true) String word){
-        return WordMapper.getByWord(word);
+    public String getByWord(@RequestParam(value = "word", required = true) String word) throws IOException{
+        return TranslateService.getTranslateResult(word);
     }
 
     /**

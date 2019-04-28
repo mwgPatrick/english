@@ -2,7 +2,10 @@ package com.english.controller;
 
 import com.english.entity.ChoiceEntity;
 import com.english.mapper.ChoiceMapper;
+import com.english.service.TranslateService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class ChoiceController {
+    private static Logger logger = LoggerFactory.getLogger(ChoiceController.class);
     @Autowired
     private ChoiceMapper choiceMapper;
 

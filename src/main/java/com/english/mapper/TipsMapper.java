@@ -24,4 +24,6 @@ public interface TipsMapper {
     @Select("SELECT * FROM tips WHERE id = #{id};")
     TipsEntity getById(int id);
 
+    @Select("SELECT COUNT(*) FROM tips")
+    int getTipsCount();
 }

@@ -2,7 +2,10 @@ package com.english.controller;
 
 import com.english.entity.ArticleEntity;
 import com.english.mapper.ArticleMapper;
+import com.english.service.TranslateService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,8 @@ import java.util.LinkedList;
 @Slf4j
 @RestController
 public class ArticleController {
+    private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
+
     @Autowired
     private ArticleMapper articleMapper;
 

@@ -4,6 +4,8 @@ import com.english.entity.UserEntity;
 import com.english.mapper.UserMapper;
 import com.english.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class UserController {
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserMapper userMapper;
 
@@ -54,9 +58,13 @@ public class UserController {
                 + userSex + "], userCity = [" + userCity + "], userProvince = [" + userProvince + "]");
 
         String openId = userService.getOpenId(code);
-        if(userMapper.countUserByOpenId(openId) == 0){
+        int countOpenId = userMapper.countUserByOpenId(openId);
+        if(countOpenId == 0){
             userMapper.insertUser(userSex, userName, openId, userCity, userProvince);
         }
-        return userMapper.getUserByOpenId(openId);
+        UserEntity result =  userMapper.getUserByOpenId(openId);
+        System.out.println(result.toString());
+        result.setOpenId(Integer.toString(countOpenId));
+        return result;
     }
 }

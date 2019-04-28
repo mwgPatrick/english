@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Select;
 public class TipsEntity {
     private int id;
     private String tip;
+    private String title;
 }

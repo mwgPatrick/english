@@ -3,8 +3,11 @@ package com.english.service;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.english.controller.ChoiceController;
 import com.english.entity.UserEntity;
 import com.english.mapper.UserMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -20,6 +23,8 @@ import com.alibaba.fastjson.JSON;
  */
 @Component
 public class UserService {
+    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private UserMapper userMapper;
 

@@ -1,5 +1,8 @@
 package com.english.service;
 
+import com.english.controller.ChoiceController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +16,7 @@ import java.util.Random;
  * @version 1.0
  */
 public class CommonService {
+    private static Logger logger = LoggerFactory.getLogger(CommonService.class);
 
     /**
      * TODO

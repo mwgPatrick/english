@@ -46,7 +46,7 @@ public interface ArticleMapper {
      * TODO
      * @author Mwg
      * @date 2019/4/5 21:29
-     * @param difficult difficlut grade.
+     * @param difficult difficult grade.
      * @return int
      */
     @Select("SELECT COUNT(*) as count FROM articles WHERE difficult = #{difficult};")

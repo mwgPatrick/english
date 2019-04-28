@@ -25,7 +25,7 @@ function getTranslation() {
     // })
 
 function getRand() {
-    $.ajax({
+      $.ajax({
         type:"get",
         url:"http://localhost:8090/word/getRandomWord",
         data:null,
