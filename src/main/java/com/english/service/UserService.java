@@ -43,14 +43,12 @@ public class UserService {
         MultiValueMap<String,String> multiValueMap = new LinkedMultiValueMap<>();
         HttpHeaders httpHeaders = new HttpHeaders();
         String requestResult = CommonService.sendGetRequest(url, multiValueMap, httpHeaders);
-        System.out.println();
-        System.out.println(requestResult);
         // 返回结果解析测试
         JSONObject jsonObject = JSON.parseObject(requestResult);
         // 获取到openId
         String openId = jsonObject.getString("openid");
-        System.out.println(openId);
-
+        logger.info(requestResult);
+        logger.info(openId);
         return openId;
     }
 

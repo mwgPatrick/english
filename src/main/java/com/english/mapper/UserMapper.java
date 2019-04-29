@@ -21,7 +21,7 @@ public interface UserMapper {
             @Result(property = "readWordCount", column = "read_word_count"),
             @Result(property = "readArticleCount", column = "read_article_count"),
             @Result(property = "readArticleId", column = "read_article_id"),
-            @Result(property = "lastLoinTime", column = "last_login_time"),
+            @Result(property = "lastLoginTime", column = "last_login_time"),
             @Result(property = "currentGrade", column = "current_grade"),
             @Result(property = "userName", column = "user_name"),
             @Result(property = "userSex", column = "user_sex"),
@@ -39,7 +39,7 @@ public interface UserMapper {
             @Result(property = "readWordCount", column = "read_word_count"),
             @Result(property = "readArticleCount", column = "read_article_count"),
             @Result(property = "readArticleId", column = "read_article_id"),
-            @Result(property = "lastLoinTime", column = "last_login_time"),
+            @Result(property = "lastLoginTime", column = "last_login_time"),
             @Result(property = "currentGrade", column = "current_grade"),
             @Result(property = "userName", column = "user_name"),
             @Result(property = "userSex", column = "user_sex"),
@@ -59,4 +59,7 @@ public interface UserMapper {
                     @Param("openId") String openId,
                     @Param("userCity") String userCity,
                     @Param("userProvince") String userProvince);
+
+    @Update("UPDATE user SET last_login_time = #{lastLoginTime}")
+    void updateLastTime(@Param("lastLoginTime") String lastLoginTime);
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * TODO
@@ -37,6 +39,7 @@ public class UserController {
      */
     @RequestMapping("/user/getById")
     public UserEntity getById(@RequestParam(value = "id", required = true) int id){
+        logger.info("userId:" + id);
         return userMapper.getUserById(id);
     }
 
@@ -54,16 +57,18 @@ public class UserController {
                      @RequestParam(value = "userCity", required = true) String userCity,
                      @RequestParam(value = "userProvince", required = true) String userProvince
                             ){
-        System.out.println("code = [" + code + "], userName = [" + userName + "], userSex = ["
+        logger.info("code = [" + code + "], userName = [" + userName + "], userSex = ["
                 + userSex + "], userCity = [" + userCity + "], userProvince = [" + userProvince + "]");
-
         String openId = userService.getOpenId(code);
         int countOpenId = userMapper.countUserByOpenId(openId);
         if(countOpenId == 0){
             userMapper.insertUser(userSex, userName, openId, userCity, userProvince);
         }
         UserEntity result =  userMapper.getUserByOpenId(openId);
-        System.out.println(result.toString());
+        // 设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        userMapper.updateLastTime(df.format(new Date()));
+        logger.info("Result: " + result.toString());
         result.setOpenId(Integer.toString(countOpenId));
         return result;
     }

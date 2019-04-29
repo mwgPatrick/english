@@ -1,10 +1,14 @@
 package com.english.mapper;
 
 import com.english.entity.ArticleEntity;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
+
+import java.util.List;
 
 /**
  * TODO
@@ -22,10 +26,13 @@ public interface ArticleMapper {
      * @param id article id.
      * @return com.english.entity.ArticleEntity
      */
-    @Select("SELECT article,word_count FROM articles WHERE id = #{id};")
+    @Select("SELECT title,create_time,article,word_count FROM articles WHERE id = #{id};")
     @Results({
+            @Result(property = "title", column = "title"),
+            @Result(property = "createTime", column = "create_time"),
             @Result(property = "article", column = "article"),
-            @Result(property = "wordCount", column = "word_count")
+            @Result(property = "wordCount", column = "word_count"),
+            @Result(property = "author", column = "author")
     })
     ArticleEntity getArticleById(int id);
 
@@ -36,11 +43,11 @@ public interface ArticleMapper {
      * @param id article id.
      * @return com.english.entity.ArticleEntity
      */
-    @Select("SELECT chinese FROM articles WHERE id = #{id};")
+    @Select("SELECT title FROM articles WHERE id = #{id};")
     @Results({
-            @Result(property = "chinese", column = "chinese")
+            @Result(property = "title", column = "title")
     })
-    ArticleEntity getChineseById(int id);
+    ArticleEntity getTitleById(int id);
 
     /**
      * TODO
@@ -61,5 +68,21 @@ public interface ArticleMapper {
      */
     @Select("SELECT COUNT(*) as count FROM articles;")
     int getAllArticleCount();
+
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/4/29 14:43
+     * @param start,end
+     * @return java.util.List<com.english.entity.ArticleEntity>
+     */
+    @Select("SELECT id, title, create_time from articles limit #{start}, #{end}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "article", column = "article"),
+            @Result(property = "createTime", column = "create_time"),
+            @Result(property = "author", column = "author")
+    })
+    List<ArticleEntity> getRangeArticle(@Param("start")int start, @Param("end")int end);
 
 }

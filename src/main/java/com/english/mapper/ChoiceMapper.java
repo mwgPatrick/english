@@ -53,7 +53,8 @@ public interface ChoiceMapper {
             @Result(property = "markC", column = "mark_C"),
             @Result(property = "markD", column = "mark_D"),
             @Result(property = "grade", column = "grade"),
-            @Result(property = "difficult", column = "difficult")
+            @Result(property = "difficult", column = "difficult"),
+            @Result(property = "createTime", column = "create_time")
     })
     ChoiceEntity getQuestionById(int id);
 

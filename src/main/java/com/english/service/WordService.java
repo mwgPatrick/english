@@ -29,6 +29,7 @@ public class WordService {
      */
     public  int getRandomId(){
         int randomId = WordMapper.getCount();
+        logger.info("WordCount: " + randomId);
         return CommonService.getRandom(randomId);
     }
 

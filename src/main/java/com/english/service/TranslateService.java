@@ -44,8 +44,10 @@ public class TranslateService {
         params.add("salt", salt);
         params.add("sign", sign);
         /** 处理结果 */
-        System.out.println(params);
-        return CommonService.sendPostRequest(YOUDAO_URL,params);
+        logger.info(params.toString());
+        String result = CommonService.sendPostRequest(YOUDAO_URL,params);
+        logger.info(result);
+        return result;
     }
 
 

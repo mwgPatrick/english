@@ -27,6 +27,7 @@ public class CommonService {
      */
     public static int getRandom(int n){
         Random rand = new Random();
+        logger.info("Range:" + n + "Random:" + rand);
         return rand.nextInt(n)+1;
     }
 
