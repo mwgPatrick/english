@@ -13,6 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
 
+    /**
+     * Select user information by user id.
+     * @author Mwg
+     * @date 2019/5/1 14:55
+     * @param Id
+     * @return com.english.entity.UserEntity
+     */
     @Select("SELECT * FROM user WHERE user_id = #{id}")
     @Results({
             @Result(property = "userId", column = "user_id"),
@@ -31,6 +38,13 @@ public interface UserMapper {
     })
     UserEntity getUserById(int Id);
 
+    /**
+     * Select user information by user's open id.
+     * @author Mwg
+     * @date 2019/5/1 14:56
+     * @param openId
+     * @return com.english.entity.UserEntity
+     */
     @Select("SELECT * FROM user WHERE open_id = #{openId}")
     @Results({
             @Result(property = "userId", column = "user_id"),
@@ -49,9 +63,23 @@ public interface UserMapper {
     })
     UserEntity getUserByOpenId(String openId);
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/1 14:50
+     * @param openId
+     * @return int
+     */
     @Select("SELECT COUNT(*) FROM user WHERE open_id = #{openId}")
     int countUserByOpenId(String openId);
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/1 14:50
+     * @param [userSex, userName, openId, userCity, userProvince]
+     * @return void
+     */
     @Insert("INSERT INTO user(user_sex, user_name, open_id, user_city, user_province) " +
             "VALUES (#{userSex}, #{userName}, #{openId}, #{userCity}, #{userProvince});")
     void insertUser(@Param("userSex") String userSex,
@@ -60,6 +88,26 @@ public interface UserMapper {
                     @Param("userCity") String userCity,
                     @Param("userProvince") String userProvince);
 
+    /**
+     * Update last_login_time in database.
+     * @author Mwg
+     * @date 2019/5/1 14:50
+     * @param lastLoginTime
+     * @return void
+     */
     @Update("UPDATE user SET last_login_time = #{lastLoginTime}")
     void updateLastTime(@Param("lastLoginTime") String lastLoginTime);
+
+    /**
+     * Update read_word_count in database.
+     * @author Mwg
+     * @date 2019/5/1 14:54
+     * @param userId
+     * @return void
+     */
+    @Update("UPDATE user SET read_word_count = read_word_count + 1 where user_id = #{userId}")
+    void updateWordCountById(@Param("userId") int userId);
+
+    @Update("UPDATE user SET read_article_id = read_article_id + ',' + #{articleId} where user_id = #{userId}")
+    void updateArticleIdByUser(@Param("articleId") int articleId,@Param("userId") int userId);
 }

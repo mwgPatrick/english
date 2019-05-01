@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class TipsController {
-    private static Logger logger = LoggerFactory.getLogger(TipsController.class);
     @Autowired
     TipsMapper tipsMapper;
 
@@ -34,11 +33,20 @@ public class TipsController {
      */
     @RequestMapping("/tips/getById")
     public TipsEntity getById(@RequestParam(value = "id", required = true) int id){
+        log.info("getById: id = " + id);
         return tipsMapper.getById(id);
     }
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/1 15:22
+     * @param () no param
+     * @return com.english.entity.TipsEntity
+     */
     @RequestMapping("/tips/getRandomTip")
     public TipsEntity getRandomTip(){
+        log.info("getRandomTip");
         return tipsMapper.getById(CommonService.getRandom(tipsMapper.getTipsCount()));
     }
 }

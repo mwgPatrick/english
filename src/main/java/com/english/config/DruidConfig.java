@@ -24,10 +24,9 @@ import java.util.Map;
  * @description TODO
  * @version 1.0
  */
-
+@Slf4j
 @Configuration
 public class DruidConfig {
-    private Logger logger = LoggerFactory.getLogger(DruidConfig.class);
 
     @Value("${spring.datasource.url}")
     private String dbUrl;
@@ -118,7 +117,7 @@ public class DruidConfig {
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
+            log.error("druid configuration initialization filter", e);
         }
         return datasource;
     }

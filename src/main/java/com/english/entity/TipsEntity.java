@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Select;
  * @date 2019/4/8 18:41
  * @version 1.0
  */
-@Slf4j
 @Data
 public class TipsEntity {
     private int id;

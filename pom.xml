@@ -59,11 +59,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId></artifactId>
-            <version></version>
-        </dependency>
     </dependencies>
 
     <build>

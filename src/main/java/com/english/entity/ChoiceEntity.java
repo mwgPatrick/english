@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019/4/3 10:34
  * @version 1.0
  */
-@Slf4j
 @Data
 public class ChoiceEntity {
     private int id;

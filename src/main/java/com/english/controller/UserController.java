@@ -22,7 +22,6 @@ import java.util.Date;
 @Slf4j
 @RestController
 public class UserController {
-    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -39,7 +38,7 @@ public class UserController {
      */
     @RequestMapping("/user/getById")
     public UserEntity getById(@RequestParam(value = "id", required = true) int id){
-        logger.info("userId:" + id);
+        log.info("userId:" + id);
         return userMapper.getUserById(id);
     }
 
@@ -57,7 +56,7 @@ public class UserController {
                      @RequestParam(value = "userCity", required = true) String userCity,
                      @RequestParam(value = "userProvince", required = true) String userProvince
                             ){
-        logger.info("code = [" + code + "], userName = [" + userName + "], userSex = ["
+        log.info("code = [" + code + "], userName = [" + userName + "], userSex = ["
                 + userSex + "], userCity = [" + userCity + "], userProvince = [" + userProvince + "]");
         String openId = userService.getOpenId(code);
         int countOpenId = userMapper.countUserByOpenId(openId);
@@ -68,7 +67,7 @@ public class UserController {
         // 设置日期格式
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         userMapper.updateLastTime(df.format(new Date()));
-        logger.info("Result: " + result.toString());
+        log.info("Result: " + result.toString());
         result.setOpenId(Integer.toString(countOpenId));
         return result;
     }

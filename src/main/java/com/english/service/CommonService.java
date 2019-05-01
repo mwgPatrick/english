@@ -1,8 +1,6 @@
 package com.english.service;
 
-import com.english.controller.ChoiceController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +13,8 @@ import java.util.Random;
  * @date 2019/3/6 16:42
  * @version 1.0
  */
+@Slf4j
 public class CommonService {
-    private static Logger logger = LoggerFactory.getLogger(CommonService.class);
 
     /**
      * TODO
@@ -27,7 +25,7 @@ public class CommonService {
      */
     public static int getRandom(int n){
         Random rand = new Random();
-        logger.info("Range:" + n + "Random:" + rand);
+        log.info("Range:" + n + "Random:" + rand);
         return rand.nextInt(n)+1;
     }
 

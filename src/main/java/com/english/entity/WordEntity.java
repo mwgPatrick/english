@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019/3/6 16:01
  * @version 1.0
  */
-@Slf4j
 @Data
 public class WordEntity {
     private int id;

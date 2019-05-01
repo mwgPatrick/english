@@ -2,35 +2,31 @@ package com.english.controller;
 
 import com.english.entity.ArticleEntity;
 import com.english.mapper.ArticleMapper;
-import com.english.service.TranslateService;
+import com.english.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * TODO
  * @author Mwg
  * @date 2019/4/5 21:12
  * @version 1.0
- * @description TODO
  */
 @Slf4j
 @RestController
 public class ArticleController {
-    private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @Autowired
     private ArticleMapper articleMapper;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * TODO
@@ -54,8 +50,11 @@ public class ArticleController {
      * @return java.lang.String
      */
     @RequestMapping("/article/getTitleById")
-    public String getTitleById(@RequestParam(value = "id", required = true) int id){
-        logger.info("getTitleById: " + id);
+    public String getTitleById(@RequestParam(value = "id", required = true) int id,
+                               @RequestParam(value = "userId", required = true) int userId){
+        log.info("getTitleById: ArticleId = " + id + ";");
+        userService.updateWordCount(userId);
+        userService.updateArticleId(id, userId);
         return articleMapper.getTitleById(id).getTitle();
     }
 
@@ -73,9 +72,10 @@ public class ArticleController {
         for(int i = 0; i < end - start; i++){
             result.get(i).setCreateTime(result.get(i).getCreateTime().replace(".0", ""));
         }
-        logger.info(result.toString());
+        log.info(result.toString());
         return result;
 
     }
-    
+
+
 }

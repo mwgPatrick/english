@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 public class ChoiceController {
-    private static Logger logger = LoggerFactory.getLogger(ChoiceController.class);
     @Autowired
     private ChoiceMapper choiceMapper;
 
@@ -33,7 +32,7 @@ public class ChoiceController {
      */
     @RequestMapping("/choice/getById")
     public ChoiceEntity getDetailById(@RequestParam(value = "id",required = true) int id){
-        logger.info("ChoiceId: " + id);
+        log.info("ChoiceId: " + id);
         return choiceMapper.getDetailById(id);
     }
     
@@ -46,7 +45,7 @@ public class ChoiceController {
      */
     @RequestMapping("/choice/getQuestionById")
     public ChoiceEntity getQuestionById(@RequestParam(value = "id",required = true) int id){
-        logger.info("ChoiceId: " + id);
+        log.info("ChoiceId: " + id);
         return choiceMapper.getQuestionById(id);
     }
 
@@ -59,7 +58,7 @@ public class ChoiceController {
      */
     @RequestMapping("/choice/getAnswerById")
     public String getAnswerById(@RequestParam(value = "id",required = true) int id){
-        logger.info("ChoiceId: " + id);
+        log.info("ChoiceId: " + id);
         return choiceMapper.getAnswerById(id);
     }
 

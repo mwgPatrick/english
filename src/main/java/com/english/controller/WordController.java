@@ -23,7 +23,6 @@ import java.util.List;
 @Slf4j
 @RestController
 public class WordController {
-    private static Logger logger = LoggerFactory.getLogger(WordController.class);
 
     @Autowired
     private WordMapper WordMapper;
@@ -39,7 +38,7 @@ public class WordController {
      */
     @RequestMapping("/word/getByWord")
     public String getByWord(@RequestParam(value = "word", required = true) String word) throws IOException{
-        logger.info("Word: " + word);
+        log.info("Word: " + word);
         return TranslateService.getTranslateResult(word);
     }
 
@@ -52,7 +51,7 @@ public class WordController {
      */
     @RequestMapping("/word/getWordByDB")
     public WordEntity getWordByDB(@RequestParam(value = "word", required = true) String word){
-        logger.info("Word: " + word);
+        log.info("Word: " + word);
         return WordMapper.getByWord(word);
 
     }
@@ -66,7 +65,7 @@ public class WordController {
      */
     @RequestMapping("/word/getByTranslation")
     public List<WordEntity> getByTranslation(@RequestParam(value = "translation",required = true) String translation){
-        logger.info("Translation: " + translation);
+        log.info("Translation: " + translation);
         return WordMapper.getByTranslation("%" + translation + "%");
     }
 
@@ -79,7 +78,7 @@ public class WordController {
      */
     @RequestMapping("/word/getById")
     public WordEntity getById(@RequestParam(value = "id",required = true) int id){
-        logger.info("Id :" + id);
+        log.info("Id :" + id);
         return WordMapper.getById(id);
     }
 

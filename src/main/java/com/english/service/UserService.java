@@ -3,9 +3,8 @@ package com.english.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.english.controller.ChoiceController;
-import com.english.entity.UserEntity;
 import com.english.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ import com.alibaba.fastjson.JSON;
  * @date 2019/4/10 10:21
  * @version 1.0
  */
+@Slf4j
 @Component
 public class UserService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -47,10 +46,33 @@ public class UserService {
         JSONObject jsonObject = JSON.parseObject(requestResult);
         // 获取到openId
         String openId = jsonObject.getString("openid");
-        logger.info(requestResult);
-        logger.info(openId);
+        log.info(requestResult);
+        log.info(openId);
         return openId;
     }
 
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/1 15:07
+     * @param userId
+     * @return void
+     */
+    public void updateWordCount(int userId){
+        log.info("UpdateWordCount: UserId = " + userId);
+        userMapper.updateWordCountById(userId);
+    }
+
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/1 15:09
+     * @param articleId,userId
+     * @return void
+     */
+    public void updateArticleId(int articleId, int userId){
+        log.info("UpdateArticleId: ArticleId = " + articleId + "; UserId = " + userId);
+        userMapper.updateArticleIdByUser(articleId, userId);
+    }
 
 }

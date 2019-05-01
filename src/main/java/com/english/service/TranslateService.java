@@ -1,12 +1,9 @@
 package com.english.service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,8 +17,8 @@ import java.security.NoSuchAlgorithmException;
  * @version 1.0
  * @date 2019/4/28 18:04
  */
+@Slf4j
 public class TranslateService {
-    private static Logger logger = LoggerFactory.getLogger(TranslateService.class);
 
     private static final String YOUDAO_URL = "http://openapi.youdao.com/api";
 
@@ -44,9 +41,9 @@ public class TranslateService {
         params.add("salt", salt);
         params.add("sign", sign);
         /** 处理结果 */
-        logger.info(params.toString());
+        log.info(params.toString());
         String result = CommonService.sendPostRequest(YOUDAO_URL,params);
-        logger.info(result);
+        log.info(result);
         return result;
     }
 
@@ -90,7 +87,7 @@ public class TranslateService {
             fos.write(result);
 
         }catch (Exception e){
-            logger.info(e.toString());
+            log.info(e.toString());
         }finally {
             if(fos != null){
                 try {
