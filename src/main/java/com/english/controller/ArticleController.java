@@ -4,8 +4,6 @@ import com.english.entity.ArticleEntity;
 import com.english.mapper.ArticleMapper;
 import com.english.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +34,8 @@ public class ArticleController {
      * @return java.util.LinkedList<java.util.HashMap>
      */
     @RequestMapping("/article/getArticleById")
-    public ArticleEntity getArticleById(@RequestParam(value = "id",required = true) int id){
+    public ArticleEntity getArticleById(@RequestParam(value = "id",required = true) int id,
+                                        @RequestParam(value = "userId", required = true) int userId){
         ArticleEntity articleEntity = articleMapper.getArticleById(id);
         articleEntity.setCreateTime(articleEntity.getCreateTime().replace(".0", ""));
         return articleEntity;
@@ -50,11 +49,8 @@ public class ArticleController {
      * @return java.lang.String
      */
     @RequestMapping("/article/getTitleById")
-    public String getTitleById(@RequestParam(value = "id", required = true) int id,
-                               @RequestParam(value = "userId", required = true) int userId){
+    public String getTitleById(@RequestParam(value = "id", required = true) int id){
         log.info("getTitleById: ArticleId = " + id + ";");
-        userService.updateWordCount(userId);
-        userService.updateArticleId(id, userId);
         return articleMapper.getTitleById(id).getTitle();
     }
 
@@ -66,16 +62,24 @@ public class ArticleController {
      * @return java.util.List<com.english.entity.ArticleEntity>
      */
     @RequestMapping("/article/getRangeTitle")
-    public List<ArticleEntity> getRangeTitle(@RequestParam(value = "start", required = true) int start,
-                                                      @RequestParam(value = "end", required = true) int end){
+    public List<ArticleEntity> getRangeTitle(@RequestParam(value = "start") int start,
+                                             @RequestParam(value = "end") int end){
         List<ArticleEntity> result = articleMapper.getRangeArticle(start, end);
-        for(int i = 0; i < end - start; i++){
+        for(int i = 0; i < result.size(); i++){
             result.get(i).setCreateTime(result.get(i).getCreateTime().replace(".0", ""));
         }
         log.info(result.toString());
         return result;
-
     }
+
+    @RequestMapping("/article/updateWordCount")
+    public void updateWordCount(@RequestParam(value = "wordCount") int wordCount,
+                                @RequestParam(value = "articleId") int articleId,
+                                @RequestParam(value = "userId") int userId){
+        userService.updateWordCount(wordCount, articleId, userId);
+    }
+
+
 
 
 }

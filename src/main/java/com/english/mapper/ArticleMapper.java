@@ -26,8 +26,9 @@ public interface ArticleMapper {
      * @param id article id.
      * @return com.english.entity.ArticleEntity
      */
-    @Select("SELECT title,create_time,article,word_count FROM articles WHERE id = #{id};")
+    @Select("SELECT id,title,create_time,article,word_count,author FROM articles WHERE id = #{id};")
     @Results({
+            @Result(property = "id", column = "id"),
             @Result(property = "title", column = "title"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "article", column = "article"),
@@ -76,7 +77,7 @@ public interface ArticleMapper {
      * @param start,end
      * @return java.util.List<com.english.entity.ArticleEntity>
      */
-    @Select("SELECT id, title, create_time from articles limit #{start}, #{end}")
+    @Select("SELECT id, title, create_time, author from articles limit #{start}, #{end}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "article", column = "article"),

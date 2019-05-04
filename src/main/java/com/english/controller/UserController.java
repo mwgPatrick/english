@@ -66,7 +66,7 @@ public class UserController {
         UserEntity result =  userMapper.getUserByOpenId(openId);
         // 设置日期格式
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        userMapper.updateLastTime(df.format(new Date()));
+        userMapper.updateLastTime(df.format(new Date()),result.getUserId());
         log.info("Result: " + result.toString());
         result.setOpenId(Integer.toString(countOpenId));
         return result;

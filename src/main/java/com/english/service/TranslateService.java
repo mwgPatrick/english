@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class TranslateService {
 
-    private static final String YOUDAO_URL = "http://openapi.youdao.com/api";
+    private static final String YOUDAO_URL = "https://openapi.youdao.com/api";
 
     private static final String APP_KEY = "0a503bbd6348e6f5";
 

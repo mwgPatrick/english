@@ -95,8 +95,8 @@ public interface UserMapper {
      * @param lastLoginTime
      * @return void
      */
-    @Update("UPDATE user SET last_login_time = #{lastLoginTime}")
-    void updateLastTime(@Param("lastLoginTime") String lastLoginTime);
+    @Update("UPDATE user SET last_login_time = #{lastLoginTime} WHERE user_id = #{userId}")
+    void updateLastTime(@Param("lastLoginTime") String lastLoginTime, @Param("userId") int userId);
 
     /**
      * Update read_word_count in database.
@@ -105,9 +105,32 @@ public interface UserMapper {
      * @param userId
      * @return void
      */
-    @Update("UPDATE user SET read_word_count = read_word_count + 1 where user_id = #{userId}")
-    void updateWordCountById(@Param("userId") int userId);
+    @Update("UPDATE user SET read_article_count = read_article_count + 1 where user_id = #{userId}")
+    void updateArticleCountById(@Param("userId") int userId);
 
-    @Update("UPDATE user SET read_article_id = read_article_id + ',' + #{articleId} where user_id = #{userId}")
-    void updateArticleIdByUser(@Param("articleId") int articleId,@Param("userId") int userId);
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/3 12:54
+     * @param articleId,userId
+     * @return void
+     */
+    @Update("UPDATE user SET read_article_id = #{articleId} where user_id = #{userId}")
+    void updateArticleIdByUser(@Param("articleId") String articleId,@Param("userId") int userId);
+
+    /**
+     * TODO
+     * @author Mwg
+     * @date 2019/5/3 12:57
+     * @param userId
+     * @return java.lang.String
+     */
+    @Select("SELECT read_article_id FROM user WHERE user_id = #{userId}")
+    String getReadArticleId(@Param("userId") int userId);
+
+    @Select("SELECT read_word_count FROM user WHERE user_id = #{userId}")
+    int getWordCount(@Param("userId") int userId);
+
+    @Update("UPDATE user SET read_word_count = #{wordCount} WHERE user_id = #{userId}")
+    void updateWordCount(@Param("wordCount") int wordCount, @Param("userId") int userId);
 }

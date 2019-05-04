@@ -5,8 +5,6 @@ package com.english.service;
 import com.alibaba.fastjson.JSONObject;
 import com.english.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -58,21 +56,29 @@ public class UserService {
      * @param userId
      * @return void
      */
-    public void updateWordCount(int userId){
-        log.info("UpdateWordCount: UserId = " + userId);
-        userMapper.updateWordCountById(userId);
+    public void updateWordCount(int wordCount, int articleId,int userId){
+        log.info("UpdateWordCount: WordCount:" + wordCount + "; ArticleId = " +articleId + ";UserId = " + userId);
+        String readArticle = userMapper.getReadArticleId(userId);
+        int readWord = userMapper.getWordCount(userId);
+        if("".equals(readArticle)||readArticle==null){
+            readWord = readWord + wordCount;
+            readArticle = Integer.toString(articleId);
+            userMapper.updateArticleCountById(userId);
+        }
+        else {
+            if(!readArticle.contains(Integer.toString(articleId))){
+                readArticle = readArticle + "," + articleId;
+                readWord = readWord + wordCount;
+                userMapper.updateArticleCountById(userId);
+            }
+        }
+        userMapper.updateWordCount(readWord, userId);
+        userMapper.updateArticleIdByUser(readArticle, userId);
     }
 
-    /**
-     * TODO
-     * @author Mwg
-     * @date 2019/5/1 15:09
-     * @param articleId,userId
-     * @return void
-     */
-    public void updateArticleId(int articleId, int userId){
-        log.info("UpdateArticleId: ArticleId = " + articleId + "; UserId = " + userId);
-        userMapper.updateArticleIdByUser(articleId, userId);
-    }
+
+
+
+
 
 }

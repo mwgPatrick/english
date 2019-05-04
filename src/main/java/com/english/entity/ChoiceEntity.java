@@ -22,4 +22,5 @@ public class ChoiceEntity {
     private int grade;
     private int difficult;
     private String createTime;
+    private String author;
 }
