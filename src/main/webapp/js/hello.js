@@ -13,6 +13,26 @@ function getTranslation() {
     })
 
 }
+function a (){
+    var that = this;
+    var i = 0;
+    var c = [1,2,3,4,5];
+    // console.log(i);
+    for(let j = 0;j<6;j++){
+        $.get("http://localhost:8090/word/getById?id="+c[j] ,function (res) {
+            console.log(c[j]);
+            console.log(res)
+        }),setTimeout(100);
+        // console.log("        "+z)
+
+        //var b = c[j];
+
+    }
+
+
+
+    // console.log(i)
+}
     // $.get("http://localhost:8090/word/getByWord?word=" + word, function (data) {
     //     // console.log(data);
     //     var tra
