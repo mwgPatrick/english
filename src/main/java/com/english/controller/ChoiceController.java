@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.english.entity.ChoiceEntity;
 import com.english.mapper.ChoiceMapper;
+import com.english.mapper.UserMapper;
 import com.english.service.CommonService;
 import com.english.service.TranslateService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChoiceController {
     @Autowired
     private ChoiceMapper choiceMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * TODO
@@ -67,11 +71,13 @@ public class ChoiceController {
      */
     @RequestMapping("/choice/getAnswerById")
     public String getAnswerById(@RequestParam(value = "id",required = true) int id,
-                                @RequestParam(value = "select",required = true) int select){
+                                @RequestParam(value = "select",required = true) int select,
+                                @RequestParam(value = "userId") int userId){
         log.info("ChoiceId: " + id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("answer",choiceMapper.getAnswerById(id));
         jsonObject.put("remark", choiceMapper.getRemarkById(id));
+        userMapper.updateQuestionCount(userId);
         return jsonObject.toString();
     }
 

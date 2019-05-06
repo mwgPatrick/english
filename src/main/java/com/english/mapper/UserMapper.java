@@ -133,4 +133,7 @@ public interface UserMapper {
 
     @Update("UPDATE user SET read_word_count = #{wordCount} WHERE user_id = #{userId}")
     void updateWordCount(@Param("wordCount") int wordCount, @Param("userId") int userId);
+
+    @Update("UPDATE user SET question_count = question_count + 1 where user_id = #{userId}")
+    void updateQuestionCount(@Param("userId") int userId);
 }
