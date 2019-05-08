@@ -75,7 +75,8 @@ public class UserController {
     @RequestMapping("/user/update")
     public void updateUserInfo(@RequestParam(value = "userName") String userName, @RequestParam(value = "userSex") String userSex,
                                @RequestParam(value = "currentGrade") String currentGrade, @RequestParam(value = "contactNumber") String contactNumber,
-                               @RequestParam(value = "contactQq") String contactQq, @RequestParam(value = "contactEmail") String contactEmail){
-        userMapper.updateUserInfo(userName, userSex, currentGrade, contactNumber, contactQq, contactEmail);
+                               @RequestParam(value = "contactQq") String contactQq, @RequestParam(value = "contactEmail") String contactEmail,
+                               @RequestParam(value = "userId") int userId){
+        userMapper.updateUserInfo(userName, userSex, currentGrade, contactNumber, contactQq, contactEmail,userId);
     }
 }
