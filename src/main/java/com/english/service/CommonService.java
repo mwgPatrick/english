@@ -17,7 +17,7 @@ import java.util.Random;
 public class CommonService {
 
     /**
-     * TODO
+     * 获取一个范围为1 ~ n的随机数。
      * @author Mwg
      * @date 2019/4/25 21:53
      * @param n range.
@@ -25,12 +25,12 @@ public class CommonService {
      */
     public static int getRandom(int n){
         Random rand = new Random();
-        log.info("Range:" + n + "Random:" + rand);
+        log.info("Range: " + n);
         return rand.nextInt(n)+1;
     }
 
     /**
-     * TODO
+     * 发送Post请求。
      * @author Mwg
      * @date 2019/4/25 21:54
      * @param url,params request url,request param
@@ -54,7 +54,7 @@ public class CommonService {
 
 
     /**
-     * TODO
+     * 发送Get请求。
      * @author Mwg
      * @date 2019/4/25 21:54
      * @param url,params,headers request url,request params,request headers

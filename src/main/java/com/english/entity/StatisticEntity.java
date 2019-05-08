@@ -19,6 +19,6 @@ public class StatisticEntity {
     private int countQues;
     private int countRight;
     private int countError;
-    private double rightRate;
+    private String rightRate;
     private int wordSearch;
 }

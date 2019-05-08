@@ -1,10 +1,9 @@
 package com.english.entity;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * TODO
+ * 用户实体类
  * @author Mwg
  * @date 2019/4/9 11:06
  * @version 1.0
@@ -24,5 +23,8 @@ public class UserEntity {
     private String openId;
     private String userCity;
     private String userProvince;
+    private String contactNumber;
+    private String contactQq;
+    private String contactEmail;
 
 }
