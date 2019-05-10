@@ -1,7 +1,9 @@
 package com.english.controller;
 
+import com.english.entity.StatisticEntity;
 import com.english.entity.UserEntity;
 import com.english.mapper.UserMapper;
+import com.english.service.StatisticService;
 import com.english.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -28,6 +30,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private StatisticService statisticService;
 
     /**
      * TODO
@@ -78,5 +83,10 @@ public class UserController {
                                @RequestParam(value = "contactQq") String contactQq, @RequestParam(value = "contactEmail") String contactEmail,
                                @RequestParam(value = "userId") int userId){
         userMapper.updateUserInfo(userName, userSex, currentGrade, contactNumber, contactQq, contactEmail,userId);
+    }
+
+    @RequestMapping("/user/getStatistic")
+    public StatisticEntity getStatistic(@RequestParam(value = "userId") int userId){
+        return statisticService.getStatistic(userId);
     }
 }

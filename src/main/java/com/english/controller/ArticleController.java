@@ -2,6 +2,7 @@ package com.english.controller;
 
 import com.english.entity.ArticleEntity;
 import com.english.mapper.ArticleMapper;
+import com.english.mapper.LogMapper;
 import com.english.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,14 @@ public class ArticleController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LogMapper logMapper;
+
     /**
      * TODO
      * @author Mwg
      * @date 2019/4/25 21:39
-     * @param id
+     * @param id 文章编号
      * @return java.util.LinkedList<java.util.HashMap>
      */
     @RequestMapping("/article/getArticleById")
@@ -75,8 +79,10 @@ public class ArticleController {
     @RequestMapping("/article/updateWordCount")
     public void updateWordCount(@RequestParam(value = "wordCount") int wordCount,
                                 @RequestParam(value = "articleId") int articleId,
-                                @RequestParam(value = "userId") int userId){
+                                @RequestParam(value = "userId") int userId,
+                                @RequestParam(value = "readTime") int readTime){
         userService.updateWordCount(wordCount, articleId, userId);
+        logMapper.insertLog(userId, 11, Integer.toString(articleId), Integer.toString(wordCount), Integer.toString(readTime));
     }
 
 

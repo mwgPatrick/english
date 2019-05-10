@@ -16,6 +16,6 @@ public class LogEntity {
     private String time;
     private String type;
     private String remark;
-    private String remarkTwo;
-    private String remarkThree;
+    private int remarkTwo;
+    private int remarkThree;
 }

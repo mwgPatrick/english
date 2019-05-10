@@ -22,27 +22,27 @@ public interface LogMapper {
                    @Param("remarkTwo") String remarkTwo,
                    @Param("remarkThree") String remarkThree);
 
-    @Select("SELECT COUNT(distinct remark) as countArticle FROM  log where id = #{userId} and type = 11 and time like #{month};")
+    @Select("SELECT COUNT(distinct remark) as countArticle FROM  log where user_id = #{userId} and type = 11 and time like #{month};")
     int getCountArticle(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select sum(remark2) as sumReadWord from log where id = #{userId} and type = 11 and time like '#{month}';")
+    @Select("select IFNULL(sum(remark_two),0) as sumReadWord from log where user_id = #{userId} and type = 11 and time like #{month};")
     int getSumReadWord(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select avg(remark3) as avgReadTime from log where id = #{userId} and type = 11 and time like #{month};")
+    @Select("select IFNULL(avg(remark_three),0) as avgReadTime from log where user_id = #{userId} and type = 11 and time like #{month};")
     int getAvgReadTime(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select sum(remark3) as sumReadTime from log where id = #{userId} and type = 11 and time like #{month};")
+    @Select("select IFNULL(sum(remark_three),0) as sumReadTime from log where user_id = #{userId} and type = 11 and time like #{month};")
     int getsumReadTime(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select count(distinct remark) as countQuestion from log where id = #{userId} and type like '2%' and time like #{month};")
+    @Select("select count(distinct remark) as countQuestion from log where user_id = #{userId} and type like '2%' and time like #{month};")
     int getCountQusetion(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select count(distinct remark) as countRight from log where id = #{userId} and type = 21 and time like #{month};")
+    @Select("select count(distinct remark) as countRight from log where user_id = #{userId} and type = 21 and time like #{month};")
     int getCountRight(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select count(distinct remark) as countError from log where id = #{userId} and type = 20 and time like #{month};")
+    @Select("select count(distinct remark) as countError from log where user_id = #{userId} and type = 20 and time like #{month};")
     int getCountError(@Param("userId") int userId, @Param("month") String month);
 
-    @Select("select count(distinct remark) as wordSearch from log where id = #{userId} and type = 60 and time like #{month};")
+    @Select("select count(distinct remark) as wordSearch from log where user_id = #{userId} and type = 60 and time like #{month};")
     int getWordSearch(@Param("userId") int userId, @Param("month") String month);
 }
