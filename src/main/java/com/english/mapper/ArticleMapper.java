@@ -26,14 +26,15 @@ public interface ArticleMapper {
      * @param id article id.
      * @return com.english.entity.ArticleEntity
      */
-    @Select("SELECT id,title,create_time,article,word_count,author FROM articles WHERE id = #{id};")
+    @Select("SELECT id,title,create_time,article,word_count,author,image_url FROM articles WHERE id = #{id};")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "title", column = "title"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "article", column = "article"),
             @Result(property = "wordCount", column = "word_count"),
-            @Result(property = "author", column = "author")
+            @Result(property = "author", column = "author"),
+            @Result(property = "imageUrl", column = "image_url")
     })
     ArticleEntity getArticleById(int id);
 
@@ -77,12 +78,13 @@ public interface ArticleMapper {
      * @param start,end
      * @return java.util.List<com.english.entity.ArticleEntity>
      */
-    @Select("SELECT id, title, create_time, author from articles limit #{start}, #{end}")
+    @Select("SELECT id, title, create_time, author,image_url from articles order by create_time desc limit #{start}, #{end}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "article", column = "article"),
             @Result(property = "createTime", column = "create_time"),
-            @Result(property = "author", column = "author")
+            @Result(property = "author", column = "author"),
+            @Result(property = "imageUrl", column = "image_url")
     })
     List<ArticleEntity> getRangeArticle(@Param("start")int start, @Param("end")int end);
 

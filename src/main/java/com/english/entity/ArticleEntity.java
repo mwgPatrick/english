@@ -20,4 +20,5 @@ public class ArticleEntity {
     private int difficult;
     private String createTime;
     private String author;
+    private String imageUrl;
 }

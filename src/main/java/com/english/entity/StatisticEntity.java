@@ -21,4 +21,7 @@ public class StatisticEntity {
     private int countError;
     private String rightRate;
     private int wordSearch;
+    private int errorOnce;
+    private int errorTwice;
+    private int errorMuch;
 }

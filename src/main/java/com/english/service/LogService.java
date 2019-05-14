@@ -1,6 +1,8 @@
 package com.english.service;
 
+import com.english.mapper.LogMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,5 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogService {
 
+    @Autowired
+    private LogMapper logMapper;
 
+    public void insertLog(int userId,int type,String remark,String remarkTwo,String remarkThree){
+        logMapper.insertLog(userId,type,remark,remarkTwo,remarkThree);
+    }
 }

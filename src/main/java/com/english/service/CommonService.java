@@ -5,6 +5,8 @@ import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -72,6 +74,20 @@ public class CommonService {
         ResponseEntity<String> response = client.exchange(url, method, requestEntity, String.class);
 
         return response.getBody();
+    }
+
+    public static String getMonth(){
+        Calendar cale = Calendar.getInstance();
+
+        int month = cale.get(Calendar.MONTH) + 1;
+        String monthStr = "";
+        if(month < 10){
+            monthStr = "%-0" + Integer.toString(month) + "-%";
+        }
+        else {
+            monthStr = "%-" + Integer.toString(month) + "-%";
+        }
+        return monthStr;
     }
 
 }

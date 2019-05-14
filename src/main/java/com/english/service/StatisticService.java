@@ -31,24 +31,18 @@ public class StatisticService {
      * @return com.english.entity.StatisticEntity
      */
     public StatisticEntity getStatistic(int userId){
-        Calendar cale = Calendar.getInstance();
-        StatisticEntity statisticEntity = new StatisticEntity();
         DecimalFormat df = new DecimalFormat("#######.00");
-        int month = cale.get(Calendar.MONTH) + 1;
-        String monthStr = "";
-        if(month < 10){
-            monthStr = "%-0" + Integer.toString(month) + "-%";
-        }
-        else {
-            monthStr = "%-" + Integer.toString(month) + "-%";
-        }
+        StatisticEntity statisticEntity = new StatisticEntity();
+        String monthStr = CommonService.getMonth();
         statisticEntity.setUserId(userId);
         statisticEntity.setCountArticle(logMapper.getCountArticle(userId, monthStr));
         statisticEntity.setAvgReadTime(logMapper.getAvgReadTime(userId, monthStr));
         statisticEntity.setSumReadTime(logMapper.getsumReadTime(userId, monthStr));
         statisticEntity.setSumReadWord(logMapper.getSumReadWord(userId, monthStr));
         statisticEntity.setCountQues(logMapper.getCountQusetion(userId, monthStr));
-
+        statisticEntity.setErrorOnce(logMapper.getErrorOnce(userId,monthStr));
+        statisticEntity.setErrorTwice(logMapper.getErrorTwice(userId,monthStr));
+        statisticEntity.setErrorMuch(logMapper.getErrorMuch(userId,monthStr));
         int countRight = logMapper.getCountRight(userId, monthStr);
         int countError = logMapper.getCountError(userId, monthStr);
         double rightRate = (double) countRight / (countError + countRight) * 100;

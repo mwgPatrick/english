@@ -85,6 +85,13 @@ public class ArticleController {
         logMapper.insertLog(userId, 11, Integer.toString(articleId), Integer.toString(wordCount), Integer.toString(readTime));
     }
 
+    @RequestMapping("/article/completeRead")
+    public void completeRead(@RequestParam(value = "userId") int userId,
+                             @RequestParam(value = "articleId") int articleId,
+                             @RequestParam(value = "wordCount") int wordCount,
+                             @RequestParam(value = "readTime") int readTime){
+        logMapper.insertLog( userId,11,Integer.toString(articleId),Integer.toString(wordCount),Integer.toString(readTime));
+    }
 
 
 

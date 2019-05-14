@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * TODO
  * @author Mwg
@@ -83,7 +85,7 @@ public class ChoiceController {
         if(answer.equals(Integer.toString(select))){
             type = 21;
         }
-        logMapper.insertLog(userId,type,Integer.toString(id),"","");
+        logMapper.insertLog(userId,type,Integer.toString(id),"0","0");
         return jsonObject.toString();
     }
 
@@ -113,5 +115,11 @@ public class ChoiceController {
         ChoiceEntity result = choiceMapper.getQuestionById(randomId);
         result.setCreateTime(result.getCreateTime().replace(".0",""));
         return result;
+    }
+
+    @RequestMapping("/choice/getErrorList")
+    public ChoiceEntity getErrorList(@RequestParam(value = "userId") int userId,
+                                           @RequestParam(value = "start") int start){
+        return logMapper.getErrorList(userId,CommonService.getMonth(),start);
     }
 }

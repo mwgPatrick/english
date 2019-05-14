@@ -1,6 +1,7 @@
 package com.english.controller;
 
 import com.english.entity.WordEntity;
+import com.english.mapper.LogMapper;
 import com.english.mapper.WordMapper;
 import com.english.service.TranslateService;
 import com.english.service.WordService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -29,6 +31,10 @@ public class WordController {
 
     @Autowired
     private WordService WordService;
+
+    @Autowired
+    private LogMapper logMapper;
+
     /**
      * TODO
      * @author Mwg
@@ -37,8 +43,10 @@ public class WordController {
      * @return Java.lang.String
      */
     @RequestMapping("/word/getByWord")
-    public String getByWord(@RequestParam(value = "word", required = true) String word) throws IOException{
+    public String getByWord(@RequestParam(value = "userId") int userId,
+                            @RequestParam(value = "word") String word) throws IOException{
         log.info("Word: " + word);
+        logMapper.insertLog(userId,60,word,"0","0");
         return TranslateService.getTranslateResult(word);
     }
 
@@ -83,16 +91,20 @@ public class WordController {
     }
 
     /**
-     * Get a random word.
+     * Get five random words.
      * @author Mwg
      * @date 2019/3/8 14:16
      * @param ()  no param
      * @return com.english.entity.WordEntity
      */
     @RequestMapping("/word/getRandomWord")
-    public WordEntity getRandomWord(){
-        int id = WordService.getRandomId();
-        return WordMapper.getById(id);
+    public List<WordEntity> getRandomWord(){
+        List<WordEntity> result = new LinkedList<>();
+        for (int i = 0; i < 5; i++) {
+            int id = WordService.getRandomId();
+            result.add(WordMapper.getById(id));
+        }
+        return result;
     }
 
 
