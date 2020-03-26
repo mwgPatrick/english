@@ -133,7 +133,7 @@ public class DruidConfig {
         //监控页面登录用户名
         initParameters.put("loginUsername", "Patrick");
         //监控页面登录用户密码
-        initParameters.put("loginPassword", "mwg924540676");
+        initParameters.put("loginPassword", "*******");
         //如果某个ip同时存在，deny优先于allow
         reg.setInitParameters(initParameters);
         return reg;
